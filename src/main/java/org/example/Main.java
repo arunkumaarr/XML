@@ -40,6 +40,7 @@ public class Main {
             JAXBElement<CorrectableAccountReportType>  jaxbElement = binder.unmarshal(domelement.item(i), CorrectableAccountReportType.class);
             CorrectableAccountReportType accountReport = jaxbElement.getValue();
             System.out.println(accountReport.getAccountNumber().getValue());
+            System.out.println(accountReport.getDocSpec().getDocRefId());
         }
 
 
