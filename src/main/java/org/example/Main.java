@@ -32,15 +32,21 @@ public class Main {
         doc.getDocumentElement().normalize();
         System.out.println("Root element: " + doc.getDocumentElement().getNodeName());
 
-        Node domelement = doc.getElementsByTagName("ftc:AccountReport").item(0);
+        NodeList domelement = doc.getElementsByTagName("ftc:AccountReport");
 
         Binder<Node> binder = context.createBinder();
 
-        JAXBElement<CorrectableAccountReportType>  jaxbElement = binder.unmarshal(domelement, CorrectableAccountReportType.class);
+        for (int i=0; i<domelement.getLength();i++) {
+            JAXBElement<CorrectableAccountReportType>  jaxbElement = binder.unmarshal(domelement.item(i), CorrectableAccountReportType.class);
+            CorrectableAccountReportType accountReport = jaxbElement.getValue();
+            System.out.println(accountReport.getAccountNumber().getValue());
+        }
 
-        CorrectableAccountReportType accountReport = jaxbElement.getValue();
 
-        System.out.println(accountReport);
+
+
+
+
 
 //        NodeList nodeList = doc.getElementsByTagName("ftc:AccountReport");
 //
